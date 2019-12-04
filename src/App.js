@@ -20,14 +20,6 @@ class App extends Component {
     users: [{ username: "Amy" }, { username: "John" }]
   };
 
-  /*
-  If the user did not type anything, he/she should not be
-  allowed to submit.
-  */
-  isDisabled = () => {
-    return false;
-  };
-
   render() {
     const { messages, users } = this.state;
 
@@ -40,9 +32,9 @@ class App extends Component {
         <div className="container">
           {users.map(user => (
             <MessagingApp
+              key={user.username}
               users={user.username}
               messages={messages}
-              disabled={this.isDisabled()}
             />
           ))}
         </div>

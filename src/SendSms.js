@@ -1,29 +1,61 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";
+
+const initState =  {
+    username: "",
+    text: ""
+  };
 
 
 class SendSms extends Component {
+  state = initState
 
+  updateSmsHandler = e => {
+    const { value } = e.target;
+    const { users } = this.props;
 
-    render () {
+    this.setState(prevState => ({
+      ...prevState,
+      username: users,
+      text: value
+    }));
+  };
 
-        const { isDisabled } = this.props;
+  /*
+  If the user did not type anything, he/she should not be
+  allowed to submit.
+  */
+  isDisabled = () => {
+    if (this.state.text === "") return true;
+  };
 
-        return (
-            <div>
-              <form className="input-group">
-                <input type="text" className="form-control" placeholder="Enter your message..." />
-                <div className="input-group-append">
-                  <button className="btn submit-button" disabled={isDisabled}>
-                    SEND
-                  </button>
-                </div>
-              </form>
-            </div>
+  sendSmsHandler= (e) => {
+    e.preventDefault();
+    console.log(this.state)
+    this.setState(initState)
+  }
 
+  render() {
+    const { text } = this.state;
 
-        )
-    }
-
+    return (
+      <div>
+        <form className="input-group" onSubmit={this.sendSmsHandler}>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter your message..."
+            onChange={this.updateSmsHandler}
+            value={text}
+          />
+          <div className="input-group-append">
+            <button className="btn submit-button" disabled={this.isDisabled()} onClick={this.sendSmsHandler}>
+              SEND
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default SendSms;

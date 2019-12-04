@@ -4,7 +4,7 @@ import SendSms from './SendSms';
 
 const MessagingApp = (props) => {
 
-    const { users , messages , isDisabled } = props
+    const { users , messages } = props
 
     return (
         
@@ -13,7 +13,7 @@ const MessagingApp = (props) => {
             <div className="name sender">{users}</div>
 
             <SmsHistory messages={messages} users={users} />
-            <SendSms disabled={isDisabled} />
+            <SendSms users={users}/>
             
           </div>
     )
