@@ -24,8 +24,7 @@ class App extends Component {
   createNewSms = (newSms) => {
     console.log(newSms)
     this.setState((PrevState)=>({
-      ...PrevState,
-      messages: PrevState.messages.push(newSms)
+      messages: PrevState.messages.concat(newSms)
     }))
     console.log(this.state)
   }

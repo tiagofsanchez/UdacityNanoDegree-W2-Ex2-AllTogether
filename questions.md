@@ -95,3 +95,15 @@ __proto__: Object
 
 Why do I have `messages: 4` and not and array of objects as I was expecting?
 
+SOLUTION: 
+
+```jsx
+//in my callback function I should be using concat, instead of push
+createNewSms = (newSms) => {
+    this.setState((PrevState)=>({
+      ...PrevState,
+      messages: PrevState.messages.push(newSms)
+    }))
+  }
+```
+With this I know that i works, but why? Why can't I use push? When I `console.log` within my call back funtion the state seems to be fine
