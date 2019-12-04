@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import MessagingApp from "./MessagingApp";
+import PropTypes from 'prop-types';
 
 /*
 This exercise will help you practice many of your newly aquired React skills.
@@ -20,16 +21,19 @@ class App extends Component {
     users: [{ username: "Amy" }, { username: "John" }]
   };
 
-  createNewSms=(newSms)=> {
-    this.setState((prevState) => ({
-      ...prevState, 
-      messages: prevState.messages.push(newSms)
+  createNewSms = (newSms) => {
+    console.log(newSms)
+    this.setState((PrevState)=>({
+      ...PrevState,
+      messages: PrevState.messages.push(newSms)
     }))
+    console.log(this.state)
   }
 
   render() {
     const { messages, users } = this.state;
-
+    console.log(this.state)
+    console.log(this.state.messages)
     return (
       <div className="App">
         <header className="App-header">
@@ -50,5 +54,12 @@ class App extends Component {
     );
   }
 }
+
+App.prototypes = {
+  users: PropTypes.string.isRequired,
+  messages: PropTypes.array.isRequired,
+  onNewSms: PropTypes.func.isRequired
+}
+
 
 export default App;

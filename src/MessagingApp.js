@@ -1,6 +1,7 @@
 import React from 'react'; 
 import SmsHistory from './SmsHistory'
 import SendSms from './SendSms';
+import PropTypes from 'prop-types';
 
 const MessagingApp = (props) => {
 
@@ -18,4 +19,10 @@ const MessagingApp = (props) => {
     )
 }
 
+
+MessagingApp.prototypes = {
+    messages: PropTypes.array.isRequired,
+    users: PropTypes.string.isRequired,
+    onNewSms: PropTypes.func.isRequired
+}
 export default MessagingApp

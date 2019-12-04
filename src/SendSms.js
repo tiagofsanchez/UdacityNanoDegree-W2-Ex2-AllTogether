@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 const initState =  {
     username: "",
@@ -12,13 +13,11 @@ class SendSms extends Component {
   updateSmsHandler = e => {
     const { value } = e.target;
     const { users } = this.props;
-
     this.setState(prevState => ({
       ...prevState,
       username: users,
       text: value
     }));
-    console.log(this.state)
   };
 
   /*
@@ -31,14 +30,12 @@ class SendSms extends Component {
 
   sendSmsHandler= (e) => {
     e.preventDefault();
-    const { onNewSms } = this.props
-    onNewSms (this.state)
+    this.props.onNewSms(this.state)
     this.setState(initState)
   }
 
   render() {
     const { text } = this.state;
-
     return (
       <div>
         <form className="input-group" onSubmit={this.sendSmsHandler}>
@@ -58,6 +55,11 @@ class SendSms extends Component {
       </div>
     );
   }
+}
+
+SendSms.prototypes = {
+  onNewSms: PropTypes.func.isRequired,
+  users: PropTypes.string.isRequired
 }
 
 export default SendSms;
