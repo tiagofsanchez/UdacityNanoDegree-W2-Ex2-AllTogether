@@ -18,6 +18,7 @@ class SendSms extends Component {
       username: users,
       text: value
     }));
+    console.log(this.state)
   };
 
   /*
@@ -30,7 +31,8 @@ class SendSms extends Component {
 
   sendSmsHandler= (e) => {
     e.preventDefault();
-    console.log(this.state)
+    const { onNewSms } = this.props
+    onNewSms (this.state)
     this.setState(initState)
   }
 

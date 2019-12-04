@@ -20,6 +20,13 @@ class App extends Component {
     users: [{ username: "Amy" }, { username: "John" }]
   };
 
+  createNewSms=(newSms)=> {
+    this.setState((prevState) => ({
+      ...prevState, 
+      messages: prevState.messages.push(newSms)
+    }))
+  }
+
   render() {
     const { messages, users } = this.state;
 
@@ -35,6 +42,7 @@ class App extends Component {
               key={user.username}
               users={user.username}
               messages={messages}
+              onNewSms={this.createNewSms}
             />
           ))}
         </div>
